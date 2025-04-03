@@ -10,8 +10,8 @@ from PyQt5.QtWidgets import (QApplication, QMainWindow, QWidget, QVBoxLayout,
                             QComboBox, QSpinBox, QCheckBox, QInputDialog,
                             QProgressBar, QGroupBox, QRadioButton, QSplitter,
                             QListWidget, QListWidgetItem, QTreeWidget, QTreeWidgetItem,
-                            QFormLayout, QDialog, QStackedWidget)
-from PyQt5.QtCore import Qt, QSize, QThread, pyqtSignal
+                            QFormLayout, QDialog, QStackedWidget, QSplashScreen)
+from PyQt5.QtCore import Qt, QSize, QThread, pyqtSignal, QTimer
 from PyQt5.QtGui import QFont, QIcon, QPixmap
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
@@ -2587,6 +2587,15 @@ class CryptoApp(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
+    
+    # Splash screen oluştur
+    splash = QSplashScreen(QPixmap("splash.png"))
+    splash.show()
+    
+    # Ana pencereyi oluştur
     window = CryptoApp()
-    window.show()
+    
+    # 2 saniye sonra splash screen'i kapat ve ana pencereyi göster
+    QTimer.singleShot(2000, lambda: (splash.close(), window.show()))
+    
     sys.exit(app.exec_()) 
