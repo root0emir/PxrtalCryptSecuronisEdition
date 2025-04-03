@@ -224,6 +224,23 @@ class CryptoApp(QMainWindow):
                     border-radius: 4px;
                     padding: 8px;
                 }
+                QComboBox::drop-down {
+                    border: none;
+                    width: 20px;
+                }
+                QComboBox::down-arrow {
+                    image: url(down_arrow.png);
+                    width: 12px;
+                    height: 12px;
+                }
+                QComboBox QAbstractItemView {
+                    background-color: #16213e;
+                    color: #ffffff;
+                    selection-background-color: #0f3460;
+                    selection-color: #ffffff;
+                    border: 1px solid #0f3460;
+                    border-radius: 4px;
+                }
                 QTextEdit {
                     background-color: #16213e;
                     color: #ffffff;
@@ -343,6 +360,23 @@ class CryptoApp(QMainWindow):
                     border: 1px solid #3d3d3d;
                     border-radius: 4px;
                     padding: 8px;
+                }
+                QComboBox::drop-down {
+                    border: none;
+                    width: 20px;
+                }
+                QComboBox::down-arrow {
+                    image: url(down_arrow.png);
+                    width: 12px;
+                    height: 12px;
+                }
+                QComboBox QAbstractItemView {
+                    background-color: #2d2d2d;
+                    color: #ffffff;
+                    selection-background-color: #3d3d3d;
+                    selection-color: #ffffff;
+                    border: 1px solid #3d3d3d;
+                    border-radius: 4px;
                 }
                 QTextEdit {
                     background-color: #2d2d2d;
@@ -464,6 +498,23 @@ class CryptoApp(QMainWindow):
                     border-radius: 4px;
                     padding: 8px;
                 }
+                QComboBox::drop-down {
+                    border: none;
+                    width: 20px;
+                }
+                QComboBox::down-arrow {
+                    image: url(down_arrow.png);
+                    width: 12px;
+                    height: 12px;
+                }
+                QComboBox QAbstractItemView {
+                    background-color: #ffffff;
+                    color: #212529;
+                    selection-background-color: #dee2e6;
+                    selection-color: #212529;
+                    border: 1px solid #ced4da;
+                    border-radius: 4px;
+                }
                 QTextEdit {
                     background-color: #ffffff;
                     color: #212529;
@@ -583,6 +634,23 @@ class CryptoApp(QMainWindow):
                     border: 1px solid #bdc3c7;
                     border-radius: 4px;
                     padding: 8px;
+                }
+                QComboBox::drop-down {
+                    border: none;
+                    width: 20px;
+                }
+                QComboBox::down-arrow {
+                    image: url(down_arrow.png);
+                    width: 12px;
+                    height: 12px;
+                }
+                QComboBox QAbstractItemView {
+                    background-color: #f8f9fa;
+                    color: #2c3e50;
+                    selection-background-color: #bdc3c7;
+                    selection-color: #2c3e50;
+                    border: 1px solid #bdc3c7;
+                    border-radius: 4px;
                 }
                 QTextEdit {
                     background-color: #f8f9fa;
