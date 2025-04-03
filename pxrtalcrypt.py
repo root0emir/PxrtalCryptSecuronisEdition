@@ -1041,34 +1041,34 @@ class CryptoApp(QMainWindow):
         try:
             text = self.text_edit.toPlainText()
             if not text:
-                QMessageBox.warning(self, "Uyarı", "Lütfen şifrelenecek metni girin!")
+                QMessageBox.warning(self, "Warning", "Please enter text to encrypt!")
                 return
                 
-            # Metin uzunluğu kontrolü
+            # Text length check
             if len(text) > 1000000:  # 1MB
-                QMessageBox.warning(self, "Uyarı", "Metin çok uzun (max 1MB)")
+                QMessageBox.warning(self, "Warning", "Text is too long (max 1MB)")
                 return
                 
             algorithm = self.algo_combo.currentText()
             
-            # Algoritma kontrolü
+            # Algorithm check
             if algorithm not in ["AES-256 (GCM)", "ChaCha20-Poly1305", "Fernet", "RSA-OAEP"]:
-                QMessageBox.warning(self, "Uyarı", "Geçersiz şifreleme algoritması")
+                QMessageBox.warning(self, "Warning", "Invalid encryption algorithm")
                 return
                 
-            # Şifreleme işlemi
+            # Encryption process
             if algorithm == "AES-256 (GCM)":
                 key = os.urandom(32)
                 iv = os.urandom(16)
                 cipher = Cipher(algorithms.AES(key), modes.GCM(iv))
                 encryptor = cipher.encryptor()
                 
-                # Metin şifreleme
+                # Text encryption
                 encrypted = encryptor.update(text.encode()) + encryptor.finalize()
                 
-                # Sonucu göster
-                self.result_edit.setText(f"Şifrelenmiş Metin (Base64):\n{base64.b64encode(encrypted).decode()}\n\n"
-                                       f"Anahtar (Base64):\n{base64.b64encode(key).decode()}\n"
+                # Show result
+                self.result_edit.setText(f"Encrypted Text (Base64):\n{base64.b64encode(encrypted).decode()}\n\n"
+                                       f"Key (Base64):\n{base64.b64encode(key).decode()}\n"
                                        f"IV (Base64):\n{base64.b64encode(iv).decode()}")
                                        
             elif algorithm == "ChaCha20-Poly1305":
@@ -1077,34 +1077,34 @@ class CryptoApp(QMainWindow):
                 cipher = Cipher(algorithms.ChaCha20(key, nonce), modes.Poly1305())
                 encryptor = cipher.encryptor()
                 
-                # Metin şifreleme
+                # Text encryption
                 encrypted = encryptor.update(text.encode()) + encryptor.finalize()
                 
-                # Sonucu göster
-                self.result_edit.setText(f"Şifrelenmiş Metin (Base64):\n{base64.b64encode(encrypted).decode()}\n\n"
-                                       f"Anahtar (Base64):\n{base64.b64encode(key).decode()}\n"
+                # Show result
+                self.result_edit.setText(f"Encrypted Text (Base64):\n{base64.b64encode(encrypted).decode()}\n\n"
+                                       f"Key (Base64):\n{base64.b64encode(key).decode()}\n"
                                        f"Nonce (Base64):\n{base64.b64encode(nonce).decode()}")
                                        
             elif algorithm == "Fernet":
                 key = Fernet.generate_key()
                 f = Fernet(key)
                 
-                # Metin şifreleme
+                # Text encryption
                 encrypted = f.encrypt(text.encode())
                 
-                # Sonucu göster
-                self.result_edit.setText(f"Şifrelenmiş Metin (Base64):\n{encrypted.decode()}\n\n"
-                                       f"Anahtar (Base64):\n{key.decode()}")
+                # Show result
+                self.result_edit.setText(f"Encrypted Text (Base64):\n{encrypted.decode()}\n\n"
+                                       f"Key (Base64):\n{key.decode()}")
                                        
             elif algorithm == "RSA-OAEP":
-                # RSA anahtarı oluştur
+                # Generate RSA key
                 private_key = rsa.generate_private_key(
                     public_exponent=65537,
                     key_size=2048
                 )
                 public_key = private_key.public_key()
                 
-                # Metin şifreleme
+                # Text encryption
                 encrypted = public_key.encrypt(
                     text.encode(),
                     padding.OAEP(
@@ -1114,7 +1114,7 @@ class CryptoApp(QMainWindow):
                     )
                 )
                 
-                # Sonucu göster
+                # Show result
                 private_key_pem = private_key.private_bytes(
                     encoding=serialization.Encoding.PEM,
                     format=serialization.PrivateFormat.PKCS8,
@@ -1127,13 +1127,13 @@ class CryptoApp(QMainWindow):
                 ).decode()
                 
                 self.result_edit.setText(
-                    f"Şifrelenmiş Metin (Base64):\n{base64.b64encode(encrypted).decode()}\n\n"
-                    f"Özel Anahtar (PEM):\n{private_key_pem}\n"
-                    f"Genel Anahtar (PEM):\n{public_key_pem}"
+                    f"Encrypted Text (Base64):\n{base64.b64encode(encrypted).decode()}\n\n"
+                    f"Private Key (PEM):\n{private_key_pem}\n"
+                    f"Public Key (PEM):\n{public_key_pem}"
                 )
                                        
         except Exception as e:
-            QMessageBox.critical(self, "Hata", f"Şifreleme sırasında hata oluştu: {str(e)}")
+            QMessageBox.critical(self, "Error", f"Error during encryption: {str(e)}")
 
     def decrypt_text(self):
         encrypted = self.text_edit.toPlainText()
@@ -1212,50 +1212,50 @@ class CryptoApp(QMainWindow):
         try:
             selected_items = self.file_list.selectedItems()
             if not selected_items:
-                QMessageBox.warning(self, "Uyarı", "Lütfen şifrelenecek dosyaları seçin!")
+                QMessageBox.warning(self, "Warning", "Please select files to encrypt!")
                 return
                 
-            # Dosya sayısı kontrolü
+            # File count check
             if len(selected_items) > 10:
-                QMessageBox.warning(self, "Uyarı", "Aynı anda en fazla 10 dosya şifrelenebilir!")
+                QMessageBox.warning(self, "Warning", "Maximum 10 files can be encrypted at once!")
                 return
                 
-            # Şifreleme seçenekleri kontrolü
+            # Encryption options check
             algorithm = self.algo_combo.currentText()
             if algorithm not in ["AES-256 (GCM)", "ChaCha20-Poly1305", "Fernet"]:
-                QMessageBox.warning(self, "Uyarı", "Geçersiz şifreleme algoritması")
+                QMessageBox.warning(self, "Warning", "Invalid encryption algorithm")
                 return
                 
-            # Çıktı dizini seçimi
+            # Output directory selection
             output_dir = QFileDialog.getExistingDirectory(
                 self,
-                "Şifrelenmiş Dosyaların Kaydedileceği Dizini Seçin"
+                "Select Directory to Save Encrypted Files"
             )
             
             if not output_dir:
                 return
                 
-            # Dizin yazma izni kontrolü
+            # Directory write permission check
             if not os.access(output_dir, os.W_OK):
-                QMessageBox.warning(self, "Uyarı", "Seçilen dizine yazma izni yok!")
+                QMessageBox.warning(self, "Warning", "No write permission for selected directory!")
                 return
                 
-            # Her dosya için şifreleme işlemi
+            # Encryption process for each file
             for item in selected_items:
                 try:
                     file_path = item.text()
                     
-                    # Dosya okuma izni kontrolü
+                    # File read permission check
                     if not os.access(file_path, os.R_OK):
-                        QMessageBox.warning(self, "Uyarı", f"{os.path.basename(file_path)} dosyasına erişim izni yok!")
+                        QMessageBox.warning(self, "Warning", f"No access permission for {os.path.basename(file_path)}!")
                         continue
                         
-                    # Dosya boyutu kontrolü
+                    # File size check
                     if os.path.getsize(file_path) > 1024 * 1024 * 1024:  # 1GB
-                        QMessageBox.warning(self, "Uyarı", f"{os.path.basename(file_path)} dosyası çok büyük (max 1GB)!")
+                        QMessageBox.warning(self, "Warning", f"{os.path.basename(file_path)} is too large (max 1GB)!")
                         continue
                         
-                    # Şifreleme işlemi
+                    # Encryption process
                     if algorithm == "AES-256 (GCM)":
                         key = os.urandom(32)
                         iv = os.urandom(16)
@@ -1267,12 +1267,12 @@ class CryptoApp(QMainWindow):
                             
                         encrypted = encryptor.update(data) + encryptor.finalize()
                         
-                        # Şifrelenmiş dosyayı kaydet
+                        # Save encrypted file
                         output_path = os.path.join(output_dir, f"{os.path.basename(file_path)}.enc")
                         with open(output_path, 'wb') as f:
                             f.write(encrypted)
                             
-                        # Anahtarı kaydet
+                        # Save key
                         key_path = os.path.join(output_dir, f"{os.path.basename(file_path)}.key")
                         with open(key_path, 'wb') as f:
                             f.write(key)
@@ -1288,12 +1288,12 @@ class CryptoApp(QMainWindow):
                             
                         encrypted = encryptor.update(data) + encryptor.finalize()
                         
-                        # Şifrelenmiş dosyayı kaydet
+                        # Save encrypted file
                         output_path = os.path.join(output_dir, f"{os.path.basename(file_path)}.enc")
                         with open(output_path, 'wb') as f:
                             f.write(encrypted)
                             
-                        # Anahtarı kaydet
+                        # Save key
                         key_path = os.path.join(output_dir, f"{os.path.basename(file_path)}.key")
                         with open(key_path, 'wb') as f:
                             f.write(key)
@@ -1307,24 +1307,24 @@ class CryptoApp(QMainWindow):
                             
                         encrypted = f.encrypt(data)
                         
-                        # Şifrelenmiş dosyayı kaydet
+                        # Save encrypted file
                         output_path = os.path.join(output_dir, f"{os.path.basename(file_path)}.enc")
                         with open(output_path, 'wb') as f_out:
                             f_out.write(encrypted)
                             
-                        # Anahtarı kaydet
+                        # Save key
                         key_path = os.path.join(output_dir, f"{os.path.basename(file_path)}.key")
                         with open(key_path, 'wb') as f:
                             f.write(key)
                             
                 except Exception as e:
-                    QMessageBox.warning(self, "Hata", f"{os.path.basename(file_path)} dosyası şifrelenirken hata oluştu: {str(e)}")
+                    QMessageBox.warning(self, "Error", f"Error encrypting {os.path.basename(file_path)}: {str(e)}")
                     continue
                     
-            QMessageBox.information(self, "Başarılı", "Dosyalar başarıyla şifrelendi!")
+            QMessageBox.information(self, "Success", "Files encrypted successfully!")
             
         except Exception as e:
-            QMessageBox.critical(self, "Hata", f"Şifreleme işlemi sırasında hata oluştu: {str(e)}")
+            QMessageBox.critical(self, "Error", f"Error during encryption process: {str(e)}")
 
     def decrypt_files(self):
         selected_items = self.file_list.selectedItems()
@@ -2416,9 +2416,9 @@ class CryptoApp(QMainWindow):
         try:
             files, _ = QFileDialog.getOpenFileNames(
                 self,
-                "Dosya Seç",
+                "Select Files",
                 "",
-                "Tüm Dosyalar (*.*)"
+                "All Files (*.*)"
             )
             
             if not files:
@@ -2426,38 +2426,38 @@ class CryptoApp(QMainWindow):
                 
             for file in files:
                 try:
-                    # Dosya boyutu kontrolü (max 1GB)
+                    # File size check (max 1GB)
                     if os.path.getsize(file) > 1024 * 1024 * 1024:
-                        QMessageBox.warning(self, "Uyarı", f"{os.path.basename(file)} dosyası çok büyük (max 1GB)")
+                        QMessageBox.warning(self, "Warning", f"{os.path.basename(file)} is too large (max 1GB)")
                         continue
                         
-                    # Dosya izinleri kontrolü
+                    # File permissions check
                     if not os.access(file, os.R_OK):
-                        QMessageBox.warning(self, "Uyarı", f"{os.path.basename(file)} dosyasına erişim izni yok")
+                        QMessageBox.warning(self, "Warning", f"No access permission for {os.path.basename(file)}")
                         continue
                         
                     if file not in [self.file_list.item(i).text() for i in range(self.file_list.count())]:
                         self.file_list.addItem(file)
                         
                 except Exception as e:
-                    QMessageBox.warning(self, "Hata", f"{os.path.basename(file)} dosyası eklenirken hata oluştu: {str(e)}")
+                    QMessageBox.warning(self, "Error", f"Error adding {os.path.basename(file)}: {str(e)}")
                     
         except Exception as e:
-            QMessageBox.critical(self, "Hata", f"Dosya seçimi sırasında hata oluştu: {str(e)}")
+            QMessageBox.critical(self, "Error", f"Error during file selection: {str(e)}")
             
     def add_folder(self):
         try:
             folder = QFileDialog.getExistingDirectory(
                 self,
-                "Klasör Seç"
+                "Select Folder"
             )
             
             if not folder:
                 return
                 
-            # Klasör izinleri kontrolü
+            # Folder permissions check
             if not os.access(folder, os.R_OK):
-                QMessageBox.warning(self, "Uyarı", "Klasöre erişim izni yok")
+                QMessageBox.warning(self, "Warning", "No access permission for folder")
                 return
                 
             for root, _, files in os.walk(folder):
@@ -2465,11 +2465,11 @@ class CryptoApp(QMainWindow):
                     try:
                         file_path = os.path.join(root, file)
                         
-                        # Dosya boyutu kontrolü
+                        # File size check
                         if os.path.getsize(file_path) > 1024 * 1024 * 1024:
                             continue
                             
-                        # Dosya izinleri kontrolü
+                        # File permissions check
                         if not os.access(file_path, os.R_OK):
                             continue
                             
@@ -2480,20 +2480,20 @@ class CryptoApp(QMainWindow):
                         continue
                         
         except Exception as e:
-            QMessageBox.critical(self, "Hata", f"Klasör seçimi sırasında hata oluştu: {str(e)}")
+            QMessageBox.critical(self, "Error", f"Error during folder selection: {str(e)}")
             
     def remove_file(self):
         try:
             selected_items = self.file_list.selectedItems()
             if not selected_items:
-                QMessageBox.warning(self, "Uyarı", "Lütfen silinecek dosyaları seçin!")
+                QMessageBox.warning(self, "Warning", "Please select files to remove!")
                 return
                 
             for item in selected_items:
                 self.file_list.takeItem(self.file_list.row(item))
                 
         except Exception as e:
-            QMessageBox.critical(self, "Hata", f"Dosya silme işlemi sırasında hata oluştu: {str(e)}")
+            QMessageBox.critical(self, "Error", f"Error during file removal: {str(e)}")
 
     def export_passwords(self):
         try:
@@ -2588,14 +2588,12 @@ class CryptoApp(QMainWindow):
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     
-    # Splash screen oluştur
     splash = QSplashScreen(QPixmap("splash.png"))
     splash.show()
-    
-    # Ana pencereyi oluştur
+
     window = CryptoApp()
     
-    # 2 saniye sonra splash screen'i kapat ve ana pencereyi göster
+
     QTimer.singleShot(2000, lambda: (splash.close(), window.show()))
     
     sys.exit(app.exec_()) 
