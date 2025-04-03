@@ -437,6 +437,246 @@ class CryptoApp(QMainWindow):
                     border: 1px solid #3d3d3d;
                 }
             """)
+        elif theme == "light":
+            self.setStyleSheet("""
+                QMainWindow {
+                    background-color: #f8f9fa;
+                    color: #212529;
+                }
+                QPushButton {
+                    background-color: #e9ecef;
+                    color: #212529;
+                    border: none;
+                    padding: 8px 16px;
+                    border-radius: 4px;
+                    font-size: 14px;
+                }
+                QPushButton:hover {
+                    background-color: #dee2e6;
+                }
+                QPushButton:pressed {
+                    background-color: #ced4da;
+                }
+                QLineEdit, QTextEdit, QComboBox {
+                    background-color: #ffffff;
+                    color: #212529;
+                    border: 1px solid #ced4da;
+                    border-radius: 4px;
+                    padding: 8px;
+                }
+                QTextEdit {
+                    background-color: #ffffff;
+                    color: #212529;
+                    border: 1px solid #ced4da;
+                    border-radius: 4px;
+                    padding: 8px;
+                }
+                QTextEdit QScrollBar:vertical {
+                    background: #f8f9fa;
+                    width: 12px;
+                    margin: 0px;
+                }
+                QTextEdit QScrollBar::handle:vertical {
+                    background: #dee2e6;
+                    min-height: 20px;
+                    border-radius: 6px;
+                }
+                QTextEdit QScrollBar::add-line:vertical, QTextEdit QScrollBar::sub-line:vertical {
+                    height: 0px;
+                }
+                QGroupBox {
+                    border: 1px solid #ced4da;
+                    border-radius: 4px;
+                    margin-top: 16px;
+                    padding-top: 16px;
+                    color: #212529;
+                    font-weight: bold;
+                }
+                QProgressBar {
+                    border: 1px solid #ced4da;
+                    border-radius: 4px;
+                    text-align: center;
+                    background-color: #ffffff;
+                    color: #212529;
+                }
+                QProgressBar::chunk {
+                    background-color: #0d6efd;
+                }
+                QTreeWidget, QListWidget {
+                    background-color: #ffffff;
+                    color: #212529;
+                    border: 1px solid #ced4da;
+                    border-radius: 4px;
+                }
+                QHeaderView::section {
+                    background-color: #f8f9fa;
+                    color: #212529;
+                    padding: 8px;
+                    border: 1px solid #ced4da;
+                }
+                QLabel {
+                    color: #212529;
+                }
+                QDialog {
+                    background-color: #f8f9fa;
+                    color: #212529;
+                }
+                QMessageBox {
+                    background-color: #f8f9fa;
+                    color: #212529;
+                }
+                QMessageBox QLabel {
+                    color: #212529;
+                }
+                QMessageBox QPushButton {
+                    background-color: #e9ecef;
+                    color: #212529;
+                    border: 1px solid #ced4da;
+                    padding: 8px 16px;
+                    border-radius: 4px;
+                }
+                QMessageBox QPushButton:hover {
+                    background-color: #dee2e6;
+                }
+                QCheckBox {
+                    color: #212529;
+                }
+                QCheckBox::indicator {
+                    width: 16px;
+                    height: 16px;
+                    border: 1px solid #ced4da;
+                    border-radius: 3px;
+                    background-color: #ffffff;
+                }
+                QCheckBox::indicator:checked {
+                    background-color: #0d6efd;
+                    border: 1px solid #0d6efd;
+                    image: url(tick.png);
+                }
+                QCheckBox::indicator:hover {
+                    border: 1px solid #0d6efd;
+                }
+            """)
+        elif theme == "modern":
+            self.setStyleSheet("""
+                QMainWindow {
+                    background-color: #ffffff;
+                    color: #2c3e50;
+                }
+                QPushButton {
+                    background-color: #3498db;
+                    color: #ffffff;
+                    border: none;
+                    padding: 8px 16px;
+                    border-radius: 4px;
+                    font-size: 14px;
+                }
+                QPushButton:hover {
+                    background-color: #2980b9;
+                }
+                QPushButton:pressed {
+                    background-color: #2472a4;
+                }
+                QLineEdit, QTextEdit, QComboBox {
+                    background-color: #f8f9fa;
+                    color: #2c3e50;
+                    border: 1px solid #bdc3c7;
+                    border-radius: 4px;
+                    padding: 8px;
+                }
+                QTextEdit {
+                    background-color: #f8f9fa;
+                    color: #2c3e50;
+                    border: 1px solid #bdc3c7;
+                    border-radius: 4px;
+                    padding: 8px;
+                }
+                QTextEdit QScrollBar:vertical {
+                    background: #f8f9fa;
+                    width: 12px;
+                    margin: 0px;
+                }
+                QTextEdit QScrollBar::handle:vertical {
+                    background: #bdc3c7;
+                    min-height: 20px;
+                    border-radius: 6px;
+                }
+                QTextEdit QScrollBar::add-line:vertical, QTextEdit QScrollBar::sub-line:vertical {
+                    height: 0px;
+                }
+                QGroupBox {
+                    border: 1px solid #bdc3c7;
+                    border-radius: 4px;
+                    margin-top: 16px;
+                    padding-top: 16px;
+                    color: #2c3e50;
+                    font-weight: bold;
+                }
+                QProgressBar {
+                    border: 1px solid #bdc3c7;
+                    border-radius: 4px;
+                    text-align: center;
+                    background-color: #f8f9fa;
+                    color: #2c3e50;
+                }
+                QProgressBar::chunk {
+                    background-color: #3498db;
+                }
+                QTreeWidget, QListWidget {
+                    background-color: #f8f9fa;
+                    color: #2c3e50;
+                    border: 1px solid #bdc3c7;
+                    border-radius: 4px;
+                }
+                QHeaderView::section {
+                    background-color: #ffffff;
+                    color: #2c3e50;
+                    padding: 8px;
+                    border: 1px solid #bdc3c7;
+                }
+                QLabel {
+                    color: #2c3e50;
+                }
+                QDialog {
+                    background-color: #ffffff;
+                    color: #2c3e50;
+                }
+                QMessageBox {
+                    background-color: #ffffff;
+                    color: #2c3e50;
+                }
+                QMessageBox QLabel {
+                    color: #2c3e50;
+                }
+                QMessageBox QPushButton {
+                    background-color: #3498db;
+                    color: #ffffff;
+                    border: none;
+                    padding: 8px 16px;
+                    border-radius: 4px;
+                }
+                QMessageBox QPushButton:hover {
+                    background-color: #2980b9;
+                }
+                QCheckBox {
+                    color: #2c3e50;
+                }
+                QCheckBox::indicator {
+                    width: 16px;
+                    height: 16px;
+                    border: 1px solid #bdc3c7;
+                    border-radius: 3px;
+                    background-color: #f8f9fa;
+                }
+                QCheckBox::indicator:checked {
+                    background-color: #3498db;
+                    border: 1px solid #3498db;
+                    image: url(tick.png);
+                }
+                QCheckBox::indicator:hover {
+                    border: 1px solid #3498db;
+                }
+            """)
 
     def change_theme(self, theme):
         theme_map = {
@@ -2590,10 +2830,9 @@ if __name__ == '__main__':
     
     splash = QSplashScreen(QPixmap("splash.png"))
     splash.show()
-
+    
     window = CryptoApp()
     
-
     QTimer.singleShot(2000, lambda: (splash.close(), window.show()))
     
     sys.exit(app.exec_()) 
