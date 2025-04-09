@@ -224,9 +224,18 @@ class CryptoApp(QMainWindow):
                     border-radius: 4px;
                     padding: 8px;
                 }
+                QComboBox {
+                    background-color: #16213e;
+                    color: #ffffff;
+                    border: 1px solid #0f3460;
+                    border-radius: 4px;
+                    padding: 8px;
+                    min-height: 20px;
+                }
                 QComboBox::drop-down {
                     border: none;
                     width: 20px;
+                    background-color: #16213e;
                 }
                 QComboBox::down-arrow {
                     image: url(down_arrow.png);
@@ -240,6 +249,22 @@ class CryptoApp(QMainWindow):
                     selection-color: #ffffff;
                     border: 1px solid #0f3460;
                     border-radius: 4px;
+                    outline: none;
+                    padding: 4px;
+                }
+                QComboBox QScrollBar:vertical {
+                    background: #16213e;
+                    width: 12px;
+                    margin: 0px;
+                }
+                QComboBox QScrollBar::handle:vertical {
+                    background: #0f3460;
+                    min-height: 20px;
+                    border-radius: 6px;
+                }
+                QComboBox QScrollBar::add-line:vertical,
+                QComboBox QScrollBar::sub-line:vertical {
+                    height: 0px;
                 }
                 QTextEdit {
                     background-color: #16213e;
@@ -361,9 +386,18 @@ class CryptoApp(QMainWindow):
                     border-radius: 4px;
                     padding: 8px;
                 }
+                QComboBox {
+                    background-color: #2d2d2d;
+                    color: #ffffff;
+                    border: 1px solid #3d3d3d;
+                    border-radius: 4px;
+                    padding: 8px;
+                    min-height: 20px;
+                }
                 QComboBox::drop-down {
                     border: none;
                     width: 20px;
+                    background-color: #2d2d2d;
                 }
                 QComboBox::down-arrow {
                     image: url(down_arrow.png);
@@ -377,6 +411,22 @@ class CryptoApp(QMainWindow):
                     selection-color: #ffffff;
                     border: 1px solid #3d3d3d;
                     border-radius: 4px;
+                    outline: none;
+                    padding: 4px;
+                }
+                QComboBox QScrollBar:vertical {
+                    background: #2d2d2d;
+                    width: 12px;
+                    margin: 0px;
+                }
+                QComboBox QScrollBar::handle:vertical {
+                    background: #3d3d3d;
+                    min-height: 20px;
+                    border-radius: 6px;
+                }
+                QComboBox QScrollBar::add-line:vertical,
+                QComboBox QScrollBar::sub-line:vertical {
+                    height: 0px;
                 }
                 QTextEdit {
                     background-color: #2d2d2d;
@@ -498,9 +548,18 @@ class CryptoApp(QMainWindow):
                     border-radius: 4px;
                     padding: 8px;
                 }
+                QComboBox {
+                    background-color: #ffffff;
+                    color: #212529;
+                    border: 1px solid #ced4da;
+                    border-radius: 4px;
+                    padding: 8px;
+                    min-height: 20px;
+                }
                 QComboBox::drop-down {
                     border: none;
                     width: 20px;
+                    background-color: #ffffff;
                 }
                 QComboBox::down-arrow {
                     image: url(down_arrow.png);
@@ -514,6 +573,22 @@ class CryptoApp(QMainWindow):
                     selection-color: #212529;
                     border: 1px solid #ced4da;
                     border-radius: 4px;
+                    outline: none;
+                    padding: 4px;
+                }
+                QComboBox QScrollBar:vertical {
+                    background: #f8f9fa;
+                    width: 12px;
+                    margin: 0px;
+                }
+                QComboBox QScrollBar::handle:vertical {
+                    background: #dee2e6;
+                    min-height: 20px;
+                    border-radius: 6px;
+                }
+                QComboBox QScrollBar::add-line:vertical,
+                QComboBox QScrollBar::sub-line:vertical {
+                    height: 0px;
                 }
                 QTextEdit {
                     background-color: #ffffff;
@@ -635,9 +710,18 @@ class CryptoApp(QMainWindow):
                     border-radius: 4px;
                     padding: 8px;
                 }
+                QComboBox {
+                    background-color: #f8f9fa;
+                    color: #2c3e50;
+                    border: 1px solid #bdc3c7;
+                    border-radius: 4px;
+                    padding: 8px;
+                    min-height: 20px;
+                }
                 QComboBox::drop-down {
                     border: none;
                     width: 20px;
+                    background-color: #f8f9fa;
                 }
                 QComboBox::down-arrow {
                     image: url(down_arrow.png);
@@ -651,6 +735,22 @@ class CryptoApp(QMainWindow):
                     selection-color: #2c3e50;
                     border: 1px solid #bdc3c7;
                     border-radius: 4px;
+                    outline: none;
+                    padding: 4px;
+                }
+                QComboBox QScrollBar:vertical {
+                    background: #f8f9fa;
+                    width: 12px;
+                    margin: 0px;
+                }
+                QComboBox QScrollBar::handle:vertical {
+                    background: #bdc3c7;
+                    min-height: 20px;
+                    border-radius: 6px;
+                }
+                QComboBox QScrollBar::add-line:vertical,
+                QComboBox QScrollBar::sub-line:vertical {
+                    height: 0px;
                 }
                 QTextEdit {
                     background-color: #f8f9fa;
